@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  noobcash_node_9:
+    image: "noobcash:latest"
+    command: flask run --port 5009
+    environment:
+      - FLASK_APP=noobcash
+      - FLASK_ENV=development
+    network_mode: host
+    container_name: noobcash_node_9
+    restart: always
+    volumes:
+      - env:/app/env
+
+volumes:
+  env:
+    driver: local
+    name: env

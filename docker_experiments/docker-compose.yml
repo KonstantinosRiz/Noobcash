@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  experiments:
+    image: "experiments:latest"
+    command: python3 ./run_experiments.py
+    environment:
+      - FLASK_APP=noobcash
+      - FLASK_ENV=development
+      - CAPACITY=5
+      - DIFFICULTY=4
+      - NODE_NUM=5
+      - IP_ADDRESS_NODE_0=127.0.0.1
+      - IP_ADDRESS_NODE_1=127.0.0.1
+      - IP_ADDRESS_NODE_2=127.0.0.1
+      - IP_ADDRESS_NODE_3=127.0.0.1
+      - IP_ADDRESS_NODE_4=127.0.0.1
+      - PORT_NODE_0=5000
+      - PORT_NODE_1=5001
+      - PORT_NODE_2=5002
+      - PORT_NODE_3=5003
+      - PORT_NODE_4=5004
+    network_mode: host
+    container_name: experiments
+    restart: "no"
+    volumes:
+      - transactions:/app/transactions
+
+volumes:
+  transactions:
+    driver: local
+    name: transactions
